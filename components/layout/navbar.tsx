@@ -33,16 +33,16 @@ export default function NavBar({ session }: { session: Session | null }) {
             <p>Algorithm Roadmap Site</p>
           </Link>
           
-          <Link href="/" className="flex items-center font-display text-2xl">
+          <Link href="/problem-rank" className="flex items-center font-display text-2xl">
             <p>문제 랭킹</p>
           </Link>
-          <Link href="/" className="flex items-center font-display text-2xl">
+          <Link href="/algorithm-contest" className="flex items-center font-display text-2xl">
             <p>추천 대회</p>
           </Link>
-          <Link href="/" className="flex items-center font-display text-2xl">
+          <Link href="/daily-problem" className="flex items-center font-display text-2xl">
             <p>오늘의 문제</p>
           </Link>
-          <Link href="/" className="flex items-center font-display text-2xl">
+          <Link href="/algorithm-roadmap" className="flex items-center font-display text-2xl">
             <p>로드맵 보기</p>
           </Link>
 

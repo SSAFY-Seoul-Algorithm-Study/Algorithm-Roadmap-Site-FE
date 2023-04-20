@@ -5,10 +5,11 @@ import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
 import { nFormatter } from "@/lib/utils";
+import Baekjoon from "@/components/shared/icons/baekjoon";
 
 export default async function Home() {
   const { stargazers_count: stars } = await fetch(
-    "https://api.github.com/repos/steven-tey/precedent",
+    "https://api.github.com/repos/SSAFY-Seoul-Algorithm-Study/Algorithm-Roadmap-Site-FE",
     {
       ...(process.env.GITHUB_OAUTH_TOKEN && {
         headers: {
@@ -38,13 +39,24 @@ export default async function Home() {
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           <Balancer>
-            효율적인 알고리즘 학습을 시작해볼까요?
+            즐거운 알고리즘 학습을 시작해볼까요?
           </Balancer>
         </p>
         <div
           className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
+          <a
+            className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
+            href="https://www.acmicpc.net/group/16681"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Baekjoon />
+            <p>
+              <span className="hidden sm:inline-block">알고리즘 스터디 백준 그룹</span>
+            </p>
+          </a>
           <a
             className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
             href="https://github.com/SSAFY-Seoul-Algorithm-Study/Algorithm-Roadmap-Site-FE"
@@ -55,17 +67,6 @@ export default async function Home() {
             <p>
               <span className="hidden sm:inline-block">Star on</span> GitHub{" "}
               <span className="font-semibold">{nFormatter(stars)}</span>
-            </p>
-          </a>
-          <a
-            className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-            href="https://github.com/steven-tey/precedent"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github />
-            <p>
-              <span className="hidden sm:inline-block">백준 그룹</span>
             </p>
           </a>
         </div>
