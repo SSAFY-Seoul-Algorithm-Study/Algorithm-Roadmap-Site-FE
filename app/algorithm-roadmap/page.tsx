@@ -3,13 +3,12 @@ import Image from "next/image";
 export default function AlgorithmRoadmap() {
 
     return(
-        <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
+        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
             <Image
                 src="/TempRoadmap.png"
                 alt="임시 로드맵"
-                width="1000"
-                height="1000"
-                className="mr-2 rounded-sm"
+                layout="fill"
+                className="flex items-center font-display text-2xl"
             ></Image>
         </div>
     );
