@@ -37,42 +37,44 @@ export default function weeklyRanking() {
     }
 
     return (
-        <div className="flex-col justify-around col-start-1 col-end-7 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md ">
-            <div className="relative overflow-x-auto">
-                <h2
-                    className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
-                    style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-                >
-                    {/* <Balancer> */}
-                    주간 랭킹
-                    {/* </Balancer> */}
-                </h2>
-                <br></br>
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                이름
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">
-                                    점수
-                                </div>
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                <div className="flex items-center">
-                                    문제 수
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sortedData.map((data) => (
-                            <PersonRating key={data.name} data={data} />
-                        ))}
-                    </tbody>
-                </table>
+        <>
+            <div className="flex-col justify-around col-start-1 col-end-7 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md ">
+                <div className="animate-fade-up relative overflow-x-auto">
+                    <h2
+                        className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
+                        style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+                    >
+                        {/* <Balancer> */}
+                        주간 랭킹
+                        {/* </Balancer> */}
+                    </h2>
+                    <br></br>
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    이름
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    <div className="flex items-center">
+                                        점수
+                                    </div>
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    <div className="flex items-center">
+                                        문제 수
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sortedData.map((data) => (
+                                <PersonRating key={data.name} data={data} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

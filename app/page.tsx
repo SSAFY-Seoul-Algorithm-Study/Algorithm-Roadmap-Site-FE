@@ -71,6 +71,7 @@ export default async function Home() {
             </p>
           </a>
         </div>
+        <hr className="animate-fade-up h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
       </div>
       <div className="my-10 grid w-full max-w-screen-xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0 ">
         <WeeklyRanking></WeeklyRanking>
