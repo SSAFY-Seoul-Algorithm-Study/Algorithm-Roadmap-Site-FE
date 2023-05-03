@@ -1,28 +1,30 @@
+import Link from "next/link";
+
 export default function ProblemRanking() {
 
     const dummy: { [key: number]: { problem_no: number, title: string, category: string[], solved_cnt: number} } = {
         1: {
-            problem_no: 13,
-            title: "임시 문제 제목1",
-            category: ["분류 1"],
+            problem_no: 5644,
+            title: "Coalescing Continents",
+            category: ["DFS"],
             solved_cnt: 13,
         },
         2: {
             problem_no: 1263,
-            title: "임시 문제 제목2",
-            category: ["분류 2", "분류 3"],
+            title: "시간 관리",
+            category: ["Brute Force", "DP"],
             solved_cnt: 163,
         },
         3: {
             problem_no: 13156,
-            title: "임시 문제 제목3",
-            category: ["분류 1", "분류 3"],
+            title: "Selling CPUs",
+            category: ["BFS", "DP"],
             solved_cnt: 123,
         },
         4: {
-            problem_no: 9193,
-            title: "임시 문제 제목4",
-            category: ["분류 4","분류 6"],
+            problem_no: 19193,
+            title: "Lines",
+            category: ["Greedy","Segment Tree"],
             solved_cnt: 113,
         },        
     };
@@ -34,7 +36,11 @@ export default function ProblemRanking() {
         return (
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={data.problem_no}>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{data.problem_no}</th>
-                <td className="px-6 py-4">{data.title}</td>
+                <td className="px-6 py-4">
+                    <Link href={`https://www.acmicpc.net/problem/${data.problem_no}`}>
+                        {data.title}
+                    </Link>
+                </td>
                 <td className="px-6 py-4">{data.category.join(", ")}</td>
                 <td className="px-6 py-4">{data.solved_cnt}</td>
             </tr>
