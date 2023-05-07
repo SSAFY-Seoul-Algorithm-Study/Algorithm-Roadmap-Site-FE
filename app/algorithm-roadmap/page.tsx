@@ -1,10 +1,13 @@
-import Script from "next/script";
+import RoadmapAnimation from "./roadmap-animation";
 
 export default function AlgorithmRoadmap() {
 
     return(
-        <div className="my-10 grid w-full max-w-screen-xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0 ">
-            <Script type="module" src="js/app.js" />
+        <div className="animate-fade-up z-0 my-10 grid w-full max-w-screen-xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0 ">
+            <RoadmapAnimation
+                canvasWidth={1000}
+                canvasHeight={500}
+            />
         </div>
     );
 }

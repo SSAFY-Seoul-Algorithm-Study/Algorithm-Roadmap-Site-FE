@@ -1,12 +1,14 @@
+'use client'
+
 //wavegroup.js
 import { Wave } from './wave.js';
 
 export class WaveGroup{
   constructor() {
-    this.totalWaves = 6;
-    this.totalPoints = 10;
+    this.totalWaves = 3;
+    this.totalPoints = 4;
 
-    this.color = ['rgba(255, 0, 0, 0.13)', 'rbga(0, 255, 0, 0.13)', 'rgba(0, 0, 255, 0.13)', 'rgba(255, 255, 0, 0.13)', 'rgba(255, 0, 255, 0.13)', 'rgba(0, 255, 255, 0.13)'];
+    this.color = ['rbga(0, 255, 0, 0.13)', 'rgba(0, 0, 255, 0.13)', 'rgba(0, 255, 255, 0.13)'];
 
     this.waves = [];
 

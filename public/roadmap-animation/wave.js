@@ -1,3 +1,5 @@
+'use client'
+
 //wave.js
 import { Point } from './point.js';
 
@@ -43,7 +45,12 @@ export class Wave{
     ctx.moveTo(prevX, prevY);
 
     //각각의 점에서 점으로 곡선을 그리는 과정
-    for(let i = 1; i < this.totalPoints; i++){
+    for(let i = 1; i < this.totalPoints; i++) {
+
+      if(i < this.totalPoints - 1) {
+        this.points[i].update();
+      }
+
       const cx = (prevX + this.points[i].x) / 2;
       const cy = (prevY + this.points[i].y) / 2;
 
@@ -52,9 +59,9 @@ export class Wave{
       prevX = this.points[i].x;
       prevY = this.points[i].y;
 
-      if(i != 0 && i != this.totalPoints - 1){
-        this.points[i].update();
-      }
+      // if(i != 0 && i != this.totalPoints - 1){
+      //   this.points[i].update();
+      // }
     }
 
     //파도의 모양을 완성해주는 과정
