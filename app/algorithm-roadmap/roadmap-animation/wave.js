@@ -13,27 +13,28 @@ export class Wave{
       const point = new Point(
         this.index + i,
         this.pointGap * i + this.startX + this.xGap,
-        this.percentY + this.startY,
+        this.percentY + this.startY
       );
       this.points[i] = point;
     }
   }
 
   resize(startX, startY, stageWidth, stageHeight, fillRatio){
+    
     this.startX = startX;
     this.startY = startY;
     this.stageWidth = stageWidth;
     this.stageHeight = stageHeight;
-
     this.centerX = stageWidth / 2 + startX;
     this.centerY = stageHeight / 2 + startY;
+
+    this.radius = stageHeight / 2;
     this.percentY = stageHeight * (1 - fillRatio);
 
     //점의 간격: 전체 넓이 / (전체 점의 숫자 - 1)
     //(x - a)^2 + (y - b)^2 = r^2
-    this.xGap = Math.sqrt(Math.pow(this.stageHeight / 2, 2) - Math.pow(this.percentY + this.startY - this.centerY, 2)) + this.centerX;
+    this.xGap = this.radius - Math.sqrt(Math.pow(this.radius, 2) - Math.pow(this.percentY - this.radius, 2));
     this.pointGap = (this.stageWidth - 2 * this.xGap) / (this.totalPoints - 1);
-    console.log(this.xGap, " : ", this.pointGap, " / ", this.centerX)
 
     this.init();
   }
@@ -64,19 +65,10 @@ export class Wave{
     }
 
     //파도의 모양을 완성해주는 과정
-    //오른쪽 파도 끝 점부터 시작해서 아래에 있는 절반의 네모를 그려준다
+    //오른쪽 파도 끝 점부터 시작해서 아래에 있는 원형 테두리를 그려준다
     ctx.lineTo(prevX, prevY);
-    ctx.strokeStyle="red";
-    ctx.stroke();
-    //
-    if(this.centerY >= prevY)
-      ctx.arc(this.centerX, this.centerY, Math.atan(prevY - this.centerY, prevX - this.centerX), Math.atan2(prevY - this.centerY, this.points[0].x - this.centerX), false);
-    else
-      ctx.arc(this.centerX, this.centerY, Math.atan2(prevY - this.centerY, this.centerX - this.points[0].x), Math.atan(prevY - this.centerY, prevX - this.centerX), true);
-    // ctx.lineTo(this.stageWidth + this.startX, this.stageHeight + this.startY);
-    // ctx.lineTo(this.startX, this.stageHeight + this.startY);
-    // ctx.lineTo(this.points[0].x, this.points[0].y);
-    
+    ctx.arc(this.centerX, this.centerY, this.radius, Math.atan2(prevY - this.centerY, prevX - this.centerX), Math.atan2(prevY - this.centerY, this.points[0].x - this.centerX));
+
     //색상을 채우고 path를 닫는다
     ctx.fill();
     ctx.closePath();

@@ -36,15 +36,17 @@ export class WaveGroup{
   }
 
   draw(ctx){
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'green';
+    ctx.arc(this.centerX, this.centerY, this.stageWidth / 2, 0, Math.PI * 2, false);
+    ctx.stroke();
+    ctx.closePath();
+    
     for(let i = 0; i < this.totalWaves; i++){
       const wave = this.waves[i];
       
       wave.draw(ctx);
-      ctx.beginPath();
-      ctx.strokeStyle = 'green';
-      ctx.arc(this.centerX, this.centerY, this.stageWidth / 2, 0, Math.PI * 2, false);
-      ctx.stroke();
-      ctx.closePath();
     }
   }
 }

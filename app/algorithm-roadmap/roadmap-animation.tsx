@@ -22,7 +22,7 @@ const RoadmapAnimation: React.FC<RoadmapAnimationProps> = ({
     let orbs: WaveGroup[] = [];
     for(let i = 0; i <= 500; i += 100) {
 
-        orbs.push(new WaveGroup(i, i, 100, 100, 0.3));
+        orbs.push(new WaveGroup(i, i, 100, 100, 0.5));
     }
 
     function animate(ctx: CanvasRenderingContext2D) {
