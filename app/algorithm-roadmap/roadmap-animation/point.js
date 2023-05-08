@@ -5,7 +5,7 @@ export class Point{
       this.fixedY = y; //수평선
       this.speed = 0.025; //웨이브의 속도
       this.cur = index; //sin 함수에서의 위치
-      this.max = Math.random() * 5 + 2;
+      this.max = Math.random() * 5 + 5;
     }
   
     update(){

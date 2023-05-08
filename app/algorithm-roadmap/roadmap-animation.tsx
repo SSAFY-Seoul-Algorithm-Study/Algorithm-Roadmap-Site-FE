@@ -13,26 +13,24 @@ const RoadmapAnimation: React.FC<RoadmapAnimationProps> = ({
     canvasWidth, canvasHeight
 }) => {
 
-    function fillBackground(ctx: CanvasRenderingContext2D) {
-
-        ctx.fillStyle = 'rgb(200, 200, 200)';
-        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-    };
-
     let orbs: WaveGroup[] = [];
-    for(let i = 0; i <= 500; i += 100) {
+    for(let i = 0; i <= 300; i += 100) {
 
-        orbs.push(new WaveGroup(i, i, 100, 100, 0.5));
+        orbs.push(new WaveGroup(i, i, 200, 200, 0.8));
     }
 
     function animate(ctx: CanvasRenderingContext2D) {
 
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-        fillBackground(ctx);
         for(let orb of orbs) {
 
             orb.draw(ctx);
+            let tag: string = "BFS";
+            ctx.textAlign = "center";
+            ctx.font = "30px normal";
+            ctx.strokeText(tag, orb.centerX, orb.centerY);
+            // ctx.fillText("test", orb.startX, orb.startY);
         }
     }
 
