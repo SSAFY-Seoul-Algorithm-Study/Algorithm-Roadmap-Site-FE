@@ -1,5 +1,6 @@
 'use client'
 
+import { useDemoModal } from "@/components/home/demo-modal";
 import useCanvas from "@/components/shared/useCanvas";
 import { RefObject } from "react";
 import { WaveGroup } from "./roadmap-animation/wavegroup"
@@ -30,14 +31,26 @@ const RoadmapAnimation: React.FC<RoadmapAnimationProps> = ({
             ctx.textAlign = "center";
             ctx.font = "30px normal";
             ctx.strokeText(tag, orb.centerX, orb.centerY);
-            // ctx.fillText("test", orb.startX, orb.startY);
         }
     }
 
     const canvasRef: RefObject<HTMLCanvasElement> = useCanvas(canvasWidth, canvasHeight, animate);
 
+    const canvas = document.getElementById('roadmap');
+    const { DemoModal, setShowDemoModal } = useDemoModal();
+    canvas?.addEventListener('click', (event) => {
+
+        console.log(event.offsetX, ' / ', event.offsetY)
+    })
+    
     return (
-        <canvas ref={canvasRef} />
+        <>
+            <canvas id="roadmap" ref={canvasRef} onClick={(event) => {
+                
+                setShowDemoModal(true);
+            }} />
+            <DemoModal />
+        </>
     );
 }
 

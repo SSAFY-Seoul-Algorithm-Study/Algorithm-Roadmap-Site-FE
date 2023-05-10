@@ -1,4 +1,4 @@
-export default function Baekjoon({ className }: { className?: string }) {
+export default function Baekjoon() {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
         width="20" height="20" viewBox="0 0 130.000000 130.000000"
