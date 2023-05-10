@@ -39,8 +39,10 @@ export class Wave{
   }
 
   draw(ctx){
+    
     ctx.beginPath();
     ctx.fillStyle = this.color;
+    console.log(this.color)
 
     let prevX = this.points[0].x;
     let prevY = this.points[0].y;
