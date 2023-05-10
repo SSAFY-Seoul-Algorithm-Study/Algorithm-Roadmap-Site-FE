@@ -1,19 +1,19 @@
 import { Wave } from './wave.js';
 
 export class WaveGroup{
-  constructor(startX, startY, stageWidth, stageHeight, fillRatio) {
+  constructor(name, startX, startY, stageSize, fillRatio, colors) {
 
     this.totalWaves = 3;
     this.totalPoints = 4;
+    this.name = name;
     this.startX = startX;
     this.startY = startY;
-    this.stageWidth = stageWidth;
-    this.stageHeight = stageHeight;
+    this.stageSize = stageSize;
     this.fillRatio = fillRatio;
-    this.centerX = stageWidth / 2 + startX;
-    this.centerY = stageHeight / 2 + startY;
+    this.centerX = stageSize / 2 + startX;
+    this.centerY = stageSize / 2 + startY;
 
-    this.color = ['rbga(0, 255, 0, 0.13)', 'rgba(0, 0, 255, 0.13)', 'rgba(0, 255, 255, 0.13)'];
+    this.color = colors;
 
     this.waves = [];
 
@@ -31,7 +31,7 @@ export class WaveGroup{
   resize(){
     for(let i = 0; i < this.totalWaves; i++){
       const wave = this.waves[i];
-      wave.resize(this.startX, this.startY, this.stageWidth, this.stageHeight, this.fillRatio);
+      wave.resize(this.startX, this.startY, this.stageSize, this.fillRatio);
     }
   }
 
@@ -39,7 +39,7 @@ export class WaveGroup{
 
     ctx.beginPath();
     ctx.strokeStyle = '#A0A0A0';
-    ctx.arc(this.centerX, this.centerY, this.stageWidth / 2, 0, Math.PI * 2, false);
+    ctx.arc(this.centerX, this.centerY, this.stageSize / 2, 0, Math.PI * 2, false);
     ctx.stroke();
     ctx.closePath();
     

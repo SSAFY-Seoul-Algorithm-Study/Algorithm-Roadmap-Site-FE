@@ -19,22 +19,21 @@ export class Wave{
     }
   }
 
-  resize(startX, startY, stageWidth, stageHeight, fillRatio){
+  resize(startX, startY, stageSize, fillRatio){
     
     this.startX = startX;
     this.startY = startY;
-    this.stageWidth = stageWidth;
-    this.stageHeight = stageHeight;
-    this.centerX = stageWidth / 2 + startX;
-    this.centerY = stageHeight / 2 + startY;
+    this.stageSize = stageSize;
+    this.centerX = stageSize / 2 + startX;
+    this.centerY = stageSize / 2 + startY;
 
-    this.radius = stageHeight / 2;
-    this.percentY = stageHeight * (1 - fillRatio);
+    this.radius = stageSize / 2;
+    this.percentY = stageSize * (1 - fillRatio);
 
     //점의 간격: 전체 넓이 / (전체 점의 숫자 - 1)
     //(x - a)^2 + (y - b)^2 = r^2
     this.xGap = this.radius - Math.sqrt(Math.pow(this.radius, 2) - Math.pow(this.percentY - this.radius, 2));
-    this.pointGap = (this.stageWidth - 2 * this.xGap) / (this.totalPoints - 1);
+    this.pointGap = (this.stageSize - 2 * this.xGap) / (this.totalPoints - 1);
 
     this.init();
   }
