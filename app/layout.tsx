@@ -7,10 +7,10 @@ import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 
 export const metadata = {
-  title: "Algorithm Roadmap Site | ARS",
+  title: "Algorithm Rating Site | ARS",
   description:
-    "알고리즘 로드맵 사이트",
-  metadataBase: new URL("https://Algorithm-Roadmap-Site.dev"),
+    "알고리즘 레이팅 사이트",
+  metadataBase: new URL("https://algorithm-rating-site.vercel.app/"),
   themeColor: "#FFF",
 };
 

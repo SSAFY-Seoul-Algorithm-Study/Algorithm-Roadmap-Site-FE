@@ -1,4 +1,3 @@
-
 'use client'
 
 import LoginCard from "@/components/home/login-card";
@@ -23,7 +22,7 @@ const Home: NextPage = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm<FormValue>();
 
-    const onSubmitHandler: SubmitHandler<FormValue> = (data) => {
+    const useSubmitHandler: SubmitHandler<FormValue> = (data) => {
         const router = useRouter();
         const loginId = data.id;
         const base64Pw = btoa(data.password);
@@ -54,7 +53,7 @@ const Home: NextPage = () => {
             title: "로그인",
             demo: <div className="flex mt-8 flex-col w-1/3 ">
 
-                <form onSubmit={handleSubmit(onSubmitHandler)}>
+                <form onSubmit={handleSubmit(useSubmitHandler)}>
 
 
 

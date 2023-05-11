@@ -31,20 +31,20 @@ export default function NavBar({ session }: { session: Session | null }) {
               height="30"
               className="mr-2 rounded-sm"
             ></Image>
-            <p>Algorithm Roadmap Site</p>
+            <p>Algorithm Rating Site</p>
           </Link>
           
           <Link href="/problem-rank" className="flex items-center font-display text-2xl">
             <p>문제 랭킹</p>
           </Link>
-          <Link href="/algorithm-contest" className="flex items-center font-display text-2xl">
-            <p>추천 대회</p>
-          </Link>
           <Link href="/daily-problem" className="flex items-center font-display text-2xl">
-            <p>오늘의 문제</p>
+            <p>오늘의 추천 문제</p>
           </Link>
           <Link href="/algorithm-roadmap" className="flex items-center font-display text-2xl">
-            <p>로드맵 보기</p>
+            <p>알고리즘 로드맵</p>
+          </Link>
+          <Link href="/algorithm-contest" className="flex items-center font-display text-2xl">
+            <p>문제 평가</p>
           </Link>
 
           <div>
