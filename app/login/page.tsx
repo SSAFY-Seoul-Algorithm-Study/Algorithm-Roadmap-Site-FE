@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import type { NextPage, NextPageContext } from "next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Balancer from "react-wrap-balancer"
 
@@ -15,12 +15,13 @@ interface FormValue {
 
 const LoginPage: NextPage = () => {
     
+    const router = useRouter();
+
     // register : 폼들의 유효성을 확인하는 메소드
     // handleSubmit : 폼을 제출하기 위한 함수
     // watch : 실시간으로 입력폼에 적힌 값을 확인하는 옵션 (keyUp event가 일어날때마다 e.target.value를 확인하는 기능)
     // formState : 전체 양식 상태에 대한 정보
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormValue>({ mode: 'onTouched' });
-    const router = useRouter();
+    const { register, handleSubmit, setError, formState: { isSubmitting, errors } } = useForm<FormValue>({ mode: 'onBlur' });
 
     const useSubmitHandler: SubmitHandler<FormValue> = async (data: {
         id: string;
@@ -65,11 +66,11 @@ const LoginPage: NextPage = () => {
                     <div className="flex mt-8 flex-col w-1/3 ">
                         <form onSubmit={handleSubmit(useSubmitHandler)}>
                             <input
-                                className={`rounded-full block w-full flex-grow`}
+                                className={`rounded-full block w-full`}
                                 type="text"
                                 placeholder="아이디를 입력하세요."
                                 {...register("id", {
-                                    required: "아이디를 입력하세요",
+                                    required: "아이디를 입력하세요 ㅡㅡ",
                                     pattern: {
                                         value: /^[A-za-z0-9가-힣]{3,10}$/,
                                         message: "아이디는 3-10자여야만 합니다."

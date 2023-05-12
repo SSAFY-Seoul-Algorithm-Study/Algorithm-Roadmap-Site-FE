@@ -1,4 +1,4 @@
-Sitemap: https://precedent.dev/sitemap.xml
+Sitemap: https://algorithm-rating-site.vercel.app/sitemap.xml
 
 User-agent: *
 Disallow: /api
