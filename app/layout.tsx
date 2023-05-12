@@ -2,7 +2,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
-import Nav from "@/components/layout/nav";
+import NavBar from "@/components/layout/navbar";
 // import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Session } from "next-auth";
@@ -18,7 +18,7 @@ export const metadata = {
 };
 
 async function getSession(cookie: string): Promise<Session> {
-  const response = await fetch(`${process.env.LOCAL_AUTH_URL}/api/auth/session`, {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {
     headers: {
       cookie,
     },
@@ -40,8 +40,7 @@ export default async function RootLayout({
       <body className={cx(sfPro.variable, inter.variable)}>
         <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
         <Suspense fallback="...">
-          {/* @ts-expect-error Server Component */}
-          <Nav />
+          <NavBar />
         </Suspense>
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
           <AuthContext session={session}>

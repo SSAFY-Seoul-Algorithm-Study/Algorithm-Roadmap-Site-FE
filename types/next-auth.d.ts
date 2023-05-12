@@ -8,8 +8,8 @@ declare module "next-auth" {
       idx: number,
       id: string,
       name: string,
-      email: string,
-      image: string,
+      email?: string | null,
+      image?: string | null,
     }
   }
 }

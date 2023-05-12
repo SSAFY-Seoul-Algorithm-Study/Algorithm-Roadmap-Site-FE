@@ -5,9 +5,11 @@ import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
-export default function NavBar({ session }: { session: Session | null }) {
+export default function NavBar() {
+
+  const { data: session } = useSession();
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
 
@@ -51,7 +53,7 @@ export default function NavBar({ session }: { session: Session | null }) {
             {session ? (
               <UserDropdown session={session} />
             ) : (
-             <Link href="/login">
+              <Link href="/login">
                 <button
                 className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
                 // onClick={() => setShowSignInModal(true)}
