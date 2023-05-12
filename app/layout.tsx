@@ -5,7 +5,9 @@ import { sfPro, inter } from "./fonts";
 import Nav from "@/components/layout/nav";
 // import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
-import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
+import { headers } from "next/headers";
+import AuthContext from './AuthContext';
 
 export const metadata = {
   title: "Algorithm Rating Site | ARS",
@@ -15,11 +17,24 @@ export const metadata = {
   themeColor: "#FFF",
 };
 
+async function getSession(cookie: string): Promise<Session> {
+  const response = await fetch(`${process.env.LOCAL_AUTH_URL}/api/auth/session`, {
+    headers: {
+      cookie,
+    },
+  });
+
+  const session = await response.json();
+
+  return Object.keys(session).length > 0 ? session : null;
+}
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSession(headers().get('cookie') ?? '');
   return (
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
@@ -29,7 +44,9 @@ export default async function RootLayout({
           <Nav />
         </Suspense>
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-          {children}
+          <AuthContext session={session}>
+            {children}
+          </AuthContext>
         </main>
         {/* <Footer /> */}
         <Analytics />

@@ -1,15 +1,14 @@
-import NextAuth from "next-auth/next";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { textSpanContainsPosition } from "typescript";
 
-export default NextAuth({
+export const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
 
             name: "Credentials",
             credentials: {
-
-                id: {
+                
+                id: {  
                     label: "ID",
                     type: "text",
                     placeholder: "아이디를 입력하세요.",
@@ -22,11 +21,11 @@ export default NextAuth({
             },
 
             async authorize(credentials, req) {
-                
-                if(!credentials)
+
+                if (!credentials)
                     throw new Error("잘못된 입력입니다.");
 
-                const {id, password} = credentials;
+                const { id, password } = credentials;
 
                 const test_user = {
                     id: "test",
@@ -39,11 +38,11 @@ export default NextAuth({
     ],
     callbacks: {
 
-        async jwt({token}) {
+        async jwt({ token }) {
             return token;
         },
-        async session({session}) {
-            
+        async session({ session }) {
+
             console.log("Provider's Res : ", session)
 
             const user_detail = {
@@ -53,9 +52,12 @@ export default NextAuth({
                 email: "test@naver.com",
                 image: "",
             };
+
             session.user = user_detail;
 
             return session;
         }
     }
-})
+}
+
+export default NextAuth(authOptions);

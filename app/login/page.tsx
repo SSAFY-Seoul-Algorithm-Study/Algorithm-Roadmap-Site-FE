@@ -1,23 +1,24 @@
-'use client'
+'use client';
 
 import LoginCard from "@/components/home/login-card";
 import Link from "next/link";
-import axios from "axios";
-import { Cookies } from "react-cookie";
 import { useForm, SubmitHandler } from "react-hook-form";
 import type { NextPage, NextPageContext } from "next";
 import { useRouter } from "next/router";
 
-const cookies = new Cookies();//쿠키 사용을 위해 선언
-
 interface FormValue {
+
     id: string;
     password: string;
 }
 
-const Home: NextPage = () => {
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<FormValue>();
+const LoginPage: NextPage = () => {
+    
+    // register : 폼들의 유효성을 확인하는 메소드
+    // handleSubmit : 폼을 제출하기 위한 함수
+    // watch : 실시간으로 입력폼에 적힌 값을 확인하는 옵션 (keyUp event가 일어날때마다 e.target.value를 확인하는 기능)
+    // formState : 전체 양식 상태에 대한 정보
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormValue>({ mode: 'onChange' });
 
     const useSubmitHandler: SubmitHandler<FormValue> = (data) => {
         const router = useRouter();
@@ -28,20 +29,12 @@ const Home: NextPage = () => {
             password: base64Pw,
         };
         console.log("test", newLoginReq)
-        axios
-            .post("/api/user", newLoginReq)
-            .then((response) => {
-                const { accessToken } = response.data;
-                cookies.set("LoginToken", accessToken, {
-                    path: "/",
-                    secure: true,
-                    sameSite: "none",
-                });
-                router.replace("/comment");
-            })
-            .catch((error) => {
-                alert("아이디 또는 비밀번호를 확인해주세요.");
-            });
+
+        try {
+
+        } catch (error) {
+
+        }
     };
 
     const features = {
@@ -50,25 +43,32 @@ const Home: NextPage = () => {
             <form onSubmit={handleSubmit(useSubmitHandler)}>
                 <input
                     type="text"
-                    {...register("id")}
+                    {...register("id"), {
+                        required: "아이디를 입력하세요",
+                        pattern: {
+                            value: /^[A-za-z0-9가-힣]{3,10}$/,
+                            message: "아이디는 3-10자여야만 합니다."
+                        }
+                    }}
                     placeholder="아이디를 입력하세요."
-                    className={`rounded-full block w-full flex-grow
-                    `}
+                    className={`rounded-full block w-full flex-grow`}
                 />
                 <br></br>
                 <input
-                    {...register("password")} type="password"
+                    type="password"
+                    {...register("password", {
+                        required: "비밀번호를 입력하세요.",
+                        pattern: {
+                            value: /(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$i/,
+                            message: "비밀번호는 최소 1개의 알파벳, 1개의 숫자, 1개의 특수문자를 포함하는 8-16자여야만 합니다."
+                        }
+                    })}
                     placeholder="비밀번호를 입력하세요."
                     className={`rounded-full block w-full flex-grow`}
-                //   disabled={disabled}
                 />
-                <Link href="/">
-                    <button
-                        className="mt-8 rounded-full border w-full  border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                    >
-                        로그인
-                    </button>
-                </Link>
+                <button type="submit" disabled={isSubmitting} className="mt-8 rounded-full border w-full  border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black">
+                    로그인
+                </button>
             </form>
             <div className="flex mt-4 justify-center">
                 <Link href="/" className=" w-40 m-4 text-center ">
@@ -99,4 +99,4 @@ const Home: NextPage = () => {
 
     );
 };
-export default Home;
+export default LoginPage;
