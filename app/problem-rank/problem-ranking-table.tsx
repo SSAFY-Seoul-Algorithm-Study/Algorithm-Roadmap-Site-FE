@@ -1,4 +1,4 @@
-import Link from "next/link";
+import ProblemTable from "@/components/home/problem-table";
 
 export default function ProblemRanking() {
 
@@ -30,22 +30,6 @@ export default function ProblemRanking() {
     };
 
     const sortedData = Object.values(dummy).sort((a, b) => b.solved_cnt - a.solved_cnt);
-
-    const ProblemRating = ({ data }: { data: { problem_no: number, title: string, category: string[], solved_cnt: number } }) => {
-
-        return (
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={data.problem_no}>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{data.problem_no}</th>
-                <td className="px-6 py-4">
-                    <Link href={`https://www.acmicpc.net/problem/${data.problem_no}`}>
-                        {data.title}
-                    </Link>
-                </td>
-                <td className="px-6 py-4">{data.category.join(", ")}</td>
-                <td className="px-6 py-4">{data.solved_cnt}</td>
-            </tr>
-        )
-    }
 
     return (
         <>
@@ -84,8 +68,8 @@ export default function ProblemRanking() {
                             </tr>
                         </thead>
                         <tbody>
-                            {sortedData.map((data) => (
-                                <ProblemRating key={data.problem_no} data={data} />
+                            {sortedData.map((dummy) => (
+                                <ProblemTable key={dummy.problem_no} data={dummy} />
                             ))}
                         </tbody>
                     </table>
