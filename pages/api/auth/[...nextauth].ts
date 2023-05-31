@@ -8,12 +8,12 @@ export const authOptions: AuthOptions = {
             name: "Credentials",
             credentials: {
                 
-                id: {  
+                loginId: {  
                     label: "ID",
                     type: "text",
                     placeholder: "아이디를 입력하세요.",
                 },
-                password: {
+                loginPassword: {
                     label: "Password",
                     type: "password",
                     placeholder: "비밀번호를 입력하세요.",
@@ -25,7 +25,12 @@ export const authOptions: AuthOptions = {
                 if (!credentials)
                     throw new Error("잘못된 입력입니다.");
 
-                const { id, password } = credentials;
+                const { loginId, loginPassword } = credentials;
+
+                console.log(credentials);
+
+                if(loginId !== "test" || loginPassword !== "@test1234")
+                    return null;
 
                 const test_user = {
                     id: "test",
