@@ -5,9 +5,8 @@ import { sfPro, inter } from "./fonts";
 import NavBar from "@/components/layout/navbar";
 // import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
-import { Session } from "next-auth";
-import { headers } from "next/headers";
-import AuthContext from './AuthContext';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: "Algorithm Rating Site | ARS",
@@ -17,38 +16,24 @@ export const metadata = {
   themeColor: "#FFF",
 };
 
-async function getSession(cookie: string): Promise<Session> {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {
-    headers: {
-      cookie,
-    },
-  });
-
-  const session = await response.json();
-
-  return Object.keys(session).length > 0 ? session : null;
-}
-
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession(headers().get('cookie') ?? '');
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
-        <AuthContext session={session}>
         <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
         <Suspense fallback="...">
-          <NavBar />
+          <NavBar session={session} />
         </Suspense>
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
             {children}
         </main>
         {/* <Footer /> */}
         <Analytics />
-        </AuthContext>
       </body>
     </html>
   );

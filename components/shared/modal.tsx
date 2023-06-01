@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Dispatch,
@@ -21,8 +21,9 @@ export default function Modal({
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }) {
+  
   const desktopModalRef = useRef(null);
-
+  
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -31,10 +32,20 @@ export default function Modal({
     },
     [setShowModal],
   );
+  
+  const closeModal = () => {
+    console.log("동작중")
+    setShowModal(false);
+  }
 
   useEffect(() => {
+    
+    window.addEventListener("popstate", closeModal);
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("popstate", closeModal);
+      document.removeEventListener("keydown", onKeyDown);
+    }
   }, [onKeyDown]);
 
   const { isMobile, isDesktop } = useWindowSize();

@@ -9,6 +9,7 @@ import {
 } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
+import LoginPage from "@/app/login/page";
 
 const SignInModal = ({
   showSignInModal,
@@ -22,7 +23,7 @@ const SignInModal = ({
   return (
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
       <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
+        <div className="flex flex-col items-center justify-center space-y-3 bg-white px-4 py-6 pt-8 text-center md:px-16">
           <a href="https://precedent.dev">
             <Image
               src="/logo.png"
@@ -32,12 +33,13 @@ const SignInModal = ({
               height={20}
             />
           </a>
-          <h3 className="font-display text-2xl font-bold">Sign In</h3>
+          <h3 className="font-display text-2xl font-bold">로그인</h3>
           <p className="text-sm text-gray-500">
-            This is strictly for demo purposes - only your email and profile
-            picture will be stored.
+            Algorithm Rating Site의 <br /> 다양한 서비스를 이용해보세요!
           </p>
         </div>
+
+        <LoginPage />
 
         <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
           <button
